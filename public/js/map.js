@@ -1,6 +1,10 @@
 'use strict';
 
 let map;
+let geocoder;
+const latInput = document.getElementById('lat');
+const lngInput = document.getElementById('lng');
+const locationInput = document.getElementById('location');
 
 async function initMap() {
 
@@ -11,10 +15,33 @@ async function initMap() {
     ({key: key, v: 'weekly'});
 
     const { Map } = await google.maps.importLibrary('maps');
+    const { Geocoder } = await google.maps.importLibrary('geocoding');
 
     map = new Map(document.getElementById('map'), {
-        center: { lat: -34.397, lng: 150.644 },
-        zoom: 8,
+        center: { lat: -30.060, lng: -51.175 },
+        zoom: 7,
     });
-    
+
+    geocoder = new Geocoder();
+
 }
+
+initMap().then(() => {
+    map.addListener('click', (e) => {
+        const latLng = e.latLng;
+
+        latInput.value = latLng.lat();
+        lngInput.value = latLng.lng();
+
+        geocoder.geocode({'location': latLng}, (results, status) => {
+            if (status === 'OK') {
+                if (results[0]) {
+                    locationInput.value = results[0].address_components[1].long_name;
+                }
+            } else {
+                console.log('Geocoder failed due to: ' + status);
+            }
+        });
+
+    });
+});
