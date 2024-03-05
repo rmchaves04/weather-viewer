@@ -8,25 +8,28 @@
 
         <hr>
 
-        <form action="#">
+        <x-flash-messages/>
+
+        <form action="{{route('store-location')}}" method="POST">
+            @csrf
             <div class="row mb-2">
                 <div class="col-auto">
                     <label for="lat" class="col-form-label">lat</label>
                 </div>
                 <div class="col-auto">
-                    <input type="text" id="lat" class="form-control" readonly>
+                    <input type="text" id="lat" name="latitude" class="form-control" readonly>
                 </div>
                 <div class="col-auto">
                     <label for="lng" class="col-form-label">lng</label>
                 </div>
                 <div class="col-auto">
-                    <input type="text" id="lng" class="form-control" readonly>
+                    <input type="text" id="lng" name="longitude" class="form-control" readonly>
                 </div>
                 <div class="col-auto">
                     <label for="lng" class="col-form-label">location</label>
                 </div>
                 <div class="col-auto">
-                    <input type="text" id="location" class="form-control" readonly>
+                    <input type="text" id="location" name="name" class="form-control">
                 </div>
                 <div class="col-auto">
                     <button type="submit" class="btn btn-outline-success"></i>Register Location</button>
@@ -35,6 +38,31 @@
         </form>
 
         <div id="map"></div>
+
+        <hr>
+
+        <div class="row">
+            <div class="col-12">
+                <h2>Locations</h2>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Location</th>
+                            <th>Latitude</th>
+                            <th>Longitude</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($locations as $location)
+                            <tr>
+                                <td>{{$location->name}}</td>
+                                <td>{{$location->latitude}}</td>
+                                <td>{{$location->longitude}}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
     </div>
 
 @endsection
