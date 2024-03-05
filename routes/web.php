@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LocationsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,4 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [HomeController::class, 'index']);
+Route::get('/', function() {
+    return redirect()->route('home');
+});
+
+Route::get('/locations', [LocationsController::class, 'index'])->name('home');
+Route::post('/locations/store', [LocationsController::class, 'store'])->name('store-location');

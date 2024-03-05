@@ -2,13 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreLocationRequest;
+use App\Models\Location;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreLocationRequest;
 
 class LocationsController extends Controller
 {
     public function index() {
-        return view('home');
+        $locations = Location::all();
+
+        return view('home', ['locations' => $locations]);
+    }
+
+    public function store(StoreLocationRequest $req) {
+        $form_data = $req->validated();
+        $location = Location::create($form_data);
+        return back()->with('success', 'Location registered successfully.');
     }
 
 }
