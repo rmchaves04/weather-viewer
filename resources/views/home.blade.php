@@ -48,16 +48,18 @@
                     <thead>
                         <tr>
                             <th>Location</th>
-                            <th>Latitude</th>
-                            <th>Longitude</th>
+                            <th>Minimum</th>
+                            <th>Maximum</th>
+                            <th>Precipitaion Probability</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($locations as $location)
                             <tr>
                                 <td>{{$location->name}}</td>
-                                <td>{{$location->latitude}}</td>
-                                <td>{{$location->longitude}}</td>
+                                <td>{{$location->forecast['temperature_min'][0]}}</td>
+                                <td>{{$location->forecast['temperature_max'][0]}}</td>
+                                <td>{{$location->forecast['precipitation_probability'][0]}}</td>
                             </tr>
                         @endforeach
                     </tbody>

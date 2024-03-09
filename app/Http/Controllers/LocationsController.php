@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Location;
-use Illuminate\Http\Request;
 use App\Http\Requests\StoreLocationRequest;
+use App\Services\GetForecastService;
 
 class LocationsController extends Controller
 {
-    public function index() {
-        $locations = Location::all();
+    public function index(GetForecastService $get_forecast_service) {
+        $locations = $get_forecast_service->getAllForecasts();
 
         return view('home', ['locations' => $locations]);
     }
