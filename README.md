@@ -1,2 +1,4 @@
 ## About This Project
-The idea is to use [Google Maps JavaScript API](https://developers.google.com/maps/documentation/javascript/overview) to select a location, and fetch it's weather details with an API. Everything is still very early in development, and any new feature plans will be updated in this README.
+This project uses the [Google Maps JavaScript API](https://developers.google.com/maps/documentation/javascript/overview) let the user register locations. The registered locations's weather is then displayed in a table, using data from the [OpenMeteo Forecast API](https://open-meteo.com).
+
+Documentation (and the project itself) is still a WIP.
