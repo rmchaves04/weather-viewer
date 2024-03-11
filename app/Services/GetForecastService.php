@@ -16,12 +16,8 @@ class GetForecastService
         $response = Http::get('https://api.open-meteo.com/v1/forecast', [
             'latitude' => $latitudes,
             'longitude' => $longitudes,
-            'current' => ['temperature_2m_min', 'temperature_2m_max', 'precipitation_probability_mean'],
-            'timezone' => 'auto',
-
+            'daily' => ['temperature_2m_min', 'temperature_2m_max', 'precipitation_probability_mean']
         ])->json();
-
-        dd($response);
 
         return $this->formatResponse($response);
     }
