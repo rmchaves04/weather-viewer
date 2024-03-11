@@ -9,7 +9,11 @@ use App\Services\GetForecastService;
 class LocationsController extends Controller
 {
     public function index(GetForecastService $get_forecast_service) {
-        $locations = $get_forecast_service->getAllForecasts();
+        if (Location::all()->isNotEmpty()) {
+            $locations = $get_forecast_service->getAllForecasts();
+        } else {
+            $locations = null;
+        }
 
         return view('home', ['locations' => $locations]);
     }
