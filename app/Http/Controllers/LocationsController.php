@@ -9,7 +9,7 @@ use App\Services\GetForecastService;
 class LocationsController extends Controller
 {
     public function index(GetForecastService $get_forecast_service) {
-        if (Location::all()->isNotEmpty()) {
+        if (Location::all()->count() >= 1) {
             $locations = $get_forecast_service->getAllForecasts();
         } else {
             $locations = null;
