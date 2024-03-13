@@ -41,9 +41,18 @@ class GetForecastService
 
     private function formatIndividualResponse($individual_response) {
         return collect([
-            'temperature_min' => $individual_response['daily']['temperature_2m_min'],
-            'temperature_max' => $individual_response['daily']['temperature_2m_max'],
-            'precipitation_probability' => $individual_response['daily']['precipitation_probability_mean']
+            'temperature_min' => [
+                'data' => $individual_response['daily']['temperature_2m_min'], 
+                'unit' => $individual_response['daily_units']['temperature_2m_min']
+            ],
+            'temperature_max' => [
+                'data' => $individual_response['daily']['temperature_2m_max'], 
+                'unit' => $individual_response['daily_units']['temperature_2m_max']
+            ],
+            'precipitation_probability' => [
+                'data' => $individual_response['daily']['precipitation_probability_mean'],
+                'unit' => $individual_response['daily_units']['precipitation_probability_mean']
+            ]
         ]);
     }
 }

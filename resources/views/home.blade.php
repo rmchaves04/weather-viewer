@@ -58,9 +58,9 @@
                             @foreach ($locations as $location)
                                 <tr>
                                     <td>{{$location->name}}</td>
-                                    <td>{{$location->forecast['temperature_min'][0]}}</td>
-                                    <td>{{$location->forecast['temperature_max'][0]}}</td>
-                                    <td>{{$location->forecast['precipitation_probability'][0]}}</td>
+                                    <td>{{$location->forecast['temperature_min']['data'][0]}} {{$location->forecast['temperature_min']['unit']}}</td>
+                                    <td>{{$location->forecast['temperature_max']['data'][0]}} {{$location->forecast['temperature_max']['unit']}}</td>
+                                    <td>{{$location->forecast['precipitation_probability']['data'][0]}} {{$location->forecast['precipitation_probability']['unit']}}</td>
                                 </tr>
                             @endforeach
                         </tbody>
