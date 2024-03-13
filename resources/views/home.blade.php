@@ -26,7 +26,7 @@
                     <input type="text" id="lng" name="longitude" class="form-control" readonly>
                 </div>
                 <div class="col-auto">
-                    <label for="lng" class="col-form-label">location</label>
+                    <label for="lng" class="col-form-label">location name</label>
                 </div>
                 <div class="col-auto">
                     <input type="text" id="location" name="name" class="form-control">
@@ -44,23 +44,23 @@
         @if ($locations != null)
             <div class="row">
                 <div class="col-12">
-                    <h2>Locations</h2>
-                    <table class="table table-striped">
+                    <h2>Forecasts</h2>
+                    <table class="table table-striped table-hover">
                         <thead>
                             <tr>
                                 <th>Location</th>
-                                <th>Minimum</th>
-                                <th>Maximum</th>
-                                <th>Precipitaion Probability</th>
+                                <th class="text-center">Minimum</th>
+                                <th class="text-center">Maximum</th>
+                                <th class="text-center">Chances of Rain</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="table-group-divider">
                             @foreach ($locations as $location)
                                 <tr>
                                     <td>{{$location->name}}</td>
-                                    <td>{{$location->forecast['temperature_min']['data'][0]}} {{$location->forecast['temperature_min']['unit']}}</td>
-                                    <td>{{$location->forecast['temperature_max']['data'][0]}} {{$location->forecast['temperature_max']['unit']}}</td>
-                                    <td>{{$location->forecast['precipitation_probability']['data'][0]}} {{$location->forecast['precipitation_probability']['unit']}}</td>
+                                    <td class="text-center">{{$location->forecast['temperature_min']['data'][0]}} {{$location->forecast['temperature_min']['unit']}}</td>
+                                    <td class="text-center">{{$location->forecast['temperature_max']['data'][0]}} {{$location->forecast['temperature_max']['unit']}}</td>
+                                    <td class="text-center">{{$location->forecast['precipitation_probability']['data'][0]}} {{$location->forecast['precipitation_probability']['unit']}}</td>
                                 </tr>
                             @endforeach
                         </tbody>
